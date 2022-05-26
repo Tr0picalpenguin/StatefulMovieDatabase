@@ -9,6 +9,9 @@ import UIKit
 
 class MovieListTableViewController: UITableViewController {
     
+    // MARK: - Properties
+    var movies: [Movie] = []
+    
     // MARK: - Outlets
     
     @IBOutlet weak var searchBar: UISearchBar!
@@ -18,18 +21,27 @@ class MovieListTableViewController: UITableViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        NetworkController.search(searchTerm: "") { movies in
+           guard let movies = movies else {return}
+            self.movies = movies
+            DispatchQueue.main.async {
+                self.tableView.reloadData()
+                self.searchBar.resignFirstResponder()
+            }
+        }
         searchBar.delegate = self
     }
     
     
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         // #warning Incomplete implementation, return the number of rows
-        return 3
+        return movies.count
     }
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         guard let cell = tableView.dequeueReusableCell(withIdentifier: "movieCell", for: indexPath) as? MovieTableViewCell else { return UITableViewCell() }
-        //TODO: - Finish the Cell Set up
+        let movie = movies[indexPath.row]
+        cell.updateView(with: movie)
         return cell
     }
     
@@ -39,6 +51,16 @@ extension MovieListTableViewController: UISearchBarDelegate {
     
     func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
         searchBar.resignFirstResponder()
+        
+        guard let searchTerm = searchBar.text else {return}
+        
+        NetworkController.search(searchTerm: searchTerm) { movies in
+           guard let movies = movies else {return}
+            self.movies = movies
+            DispatchQueue.main.async {
+                self.tableView.reloadData()
+                self.searchBar.resignFirstResponder()
+            }
+        }
     }
-    //TODO: - Search for a Movie
 }

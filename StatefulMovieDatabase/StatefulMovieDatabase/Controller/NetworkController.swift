@@ -6,6 +6,7 @@
 //
 
 import Foundation
+import UIKit
 
 class NetworkController {
     
@@ -60,8 +61,27 @@ class NetworkController {
         }.resume()
     }
     
-    func fetchImage() {
+    static func fetchImage(image urlString: String, completion: @escaping (UIImage?) -> Void) {
+        // construct the URL
+        guard let imageBaseURL = URL(string: "https://image.tmdb.org/t/p/w500") else {
+            completion(nil)
+            return
+        }
         
+        let finalImageURL = imageBaseURL.appendingPathComponent(urlString)
+        print(finalImageURL)
+        
+        URLSession.shared.dataTask(with: finalImageURL) { data, _, error in
+            if let error = error {
+                print("Danger Will Robinson! Encountered an Error.", error.localizedDescription)
+                completion(nil)
+                return
+            }
+            guard let data = data else {completion(nil); return}
+            let image = UIImage(data: data)
+            completion(image)
+        }.resume()
     }
+    
     
 } // End of class
