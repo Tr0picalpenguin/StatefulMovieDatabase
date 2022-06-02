@@ -15,7 +15,7 @@ class MovieListTableViewController: UITableViewController {
     
     // MARK: - Properties
     
-    var movies: [Movie] = []
+    var movies: [ResultsDictionary] = []
     
     // MARK: - Functions
     
@@ -26,7 +26,6 @@ class MovieListTableViewController: UITableViewController {
     
     
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        // #warning Incomplete implementation, return the number of rows
         return movies.count
     }
     
@@ -35,11 +34,10 @@ class MovieListTableViewController: UITableViewController {
         
         let movie = movies[indexPath.row]
         cell.setConfiguration(with: movie)
-        
         return cell
     }
     
-}
+} // End of class
 
 extension MovieListTableViewController: UISearchBarDelegate {
     
@@ -50,15 +48,25 @@ extension MovieListTableViewController: UISearchBarDelegate {
             return
         }
         
-        NetworkController.fetchMovieWith(searchTerm: searchTerm) { movie in
-            guard let movie = movie else { return }
-            self.movies = movie
-            
-            DispatchQueue.main.async {
-                self.tableView.reloadData()
-                self.searchBar.resignFirstResponder()
-            }
+      
+        NetworkController.fetchMovieDictionary(with: searchTerm) { result in
+            switch result {
+            case.success(let movieDict):
+                self.movies = movieDict.results
+                DispatchQueue.main.async {
+                    self.tableView.reloadData()
+                    self.searchBar.resignFirstResponder()
+                }
+            case.failure(let error):
+                print("There was an error!", error.errorDescription!)
         }
+          
+            
+            
+
+            
+        }
+        
     }
     
 }

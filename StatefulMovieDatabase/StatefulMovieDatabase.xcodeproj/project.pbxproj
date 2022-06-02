@@ -16,6 +16,7 @@
 		41990FB427B4CA170093B4DB /* NetworkController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 41990FB327B4CA170093B4DB /* NetworkController.swift */; };
 		41990FB627B4CA590093B4DB /* MovieListTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 41990FB527B4CA590093B4DB /* MovieListTableViewController.swift */; };
 		41990FB827B4CAAF0093B4DB /* MovieTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 41990FB727B4CAAF0093B4DB /* MovieTableViewCell.swift */; };
+		ED30A97C284924D4006696E2 /* ResultError.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED30A97B284924D4006696E2 /* ResultError.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -30,6 +31,7 @@
 		41990FB327B4CA170093B4DB /* NetworkController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkController.swift; sourceTree = "<group>"; };
 		41990FB527B4CA590093B4DB /* MovieListTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovieListTableViewController.swift; sourceTree = "<group>"; };
 		41990FB727B4CAAF0093B4DB /* MovieTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovieTableViewCell.swift; sourceTree = "<group>"; };
+		ED30A97B284924D4006696E2 /* ResultError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResultError.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -104,6 +106,7 @@
 			isa = PBXGroup;
 			children = (
 				41990FB327B4CA170093B4DB /* NetworkController.swift */,
+				ED30A97B284924D4006696E2 /* ResultError.swift */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -182,6 +185,7 @@
 				41990FB627B4CA590093B4DB /* MovieListTableViewController.swift in Sources */,
 				41990FB427B4CA170093B4DB /* NetworkController.swift in Sources */,
 				41990FB827B4CAAF0093B4DB /* MovieTableViewCell.swift in Sources */,
+				ED30A97C284924D4006696E2 /* ResultError.swift in Sources */,
 				418FA6A827B4058300ABEC96 /* AppDelegate.swift in Sources */,
 				41990FB227B4C9EF0093B4DB /* Movie.swift in Sources */,
 				418FA6AA27B4058300ABEC96 /* SceneDelegate.swift in Sources */,
