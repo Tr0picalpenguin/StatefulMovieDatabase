@@ -14,7 +14,7 @@ class NetworkController {
     static private let baseURLString = "https://api.themoviedb.org/3"
     
     // MARK: - CRUD
-    static func search(searchTerm: String, completion: @escaping([Movie]?) -> Void) {
+    static func search(searchTerm: String, completion: @escaping ([Movie]?) -> Void) {
         // Construct the URL
         guard let baseURL = URL(string: baseURLString) else {completion(nil); return}
         let searchMovieURL = baseURL.appendingPathComponent("search/movie")
